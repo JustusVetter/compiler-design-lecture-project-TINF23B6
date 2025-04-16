@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class LexerTest {
 
-  /*@Test
+  @Test
   @DisplayName("Full lexer test")
   public void testAll() {
     String input = "\"string\"";
@@ -19,6 +19,6 @@ public class LexerTest {
     assertDoesNotThrow(() -> lexer.expect(TokenType.TOK_STRING_LIT));
     // ToDo(Students): Please add your token types
     assert lexer.isEOF();
-  }*/
+  }
 
 }
