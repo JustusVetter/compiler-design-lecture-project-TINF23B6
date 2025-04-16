@@ -13,18 +13,22 @@ public class IntegerLiteralStateMachine extends StateMachine {
         stateStart.setStartState(true);
         addState(stateStart);
 
-        State firstNumber = new State("firstNumber");
-        firstNumber.setAcceptState(true);
-        addState(firstNumber);
+        State stateZero = new State("zero");
+        stateZero.setAcceptState(true);
+        addState(stateZero);
 
-        State followingNumber = new State("followingNumber");
-        followingNumber.setAcceptState(true);
-        addState(followingNumber);
+        State stateNoZero = new State("noZero");
+        stateNoZero.setAcceptState(true);
+        addState(stateNoZero);
 
+        State stateAllNumbers = new State("allNumbers");
+        stateAllNumbers.setAcceptState(true);
+        addState(stateAllNumbers);
 
-        addRangeTransition(stateStart,firstNumber,new Range('1','9'));
-        addRangeTransition(firstNumber,followingNumber,new Range('0','9'));
-        addRangeTransition(followingNumber,followingNumber,new Range('0','9'));
+        addCharTransition(stateStart,stateZero, '0');
+        addRangeTransition(stateStart, stateNoZero, new Range('1','9'));
+        addRangeTransition(stateNoZero, stateAllNumbers, new Range('0','9'));
+        addRangeTransition(stateAllNumbers, stateAllNumbers, new Range('0','9'));
     }
 
     @Override
