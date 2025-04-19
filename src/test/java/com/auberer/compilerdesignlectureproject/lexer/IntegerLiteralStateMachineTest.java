@@ -34,16 +34,20 @@ public class IntegerLiteralStateMachineTest {
         assertTrue(stateMachine.isInAcceptState());
     }
 
-    /*@Test
+    @Test
     @DisplayName("incorrect Multi Digit Integer")
     public void testIncorrectMultiDigitInt() {
-        String input = "00";
+        String input = "07826103781";
         IntegerLiteralStateMachine stateMachine = new IntegerLiteralStateMachine();
         stateMachine.init();
         stateMachine.reset();
-        for (char c : input.toCharArray()) {
-            assertDoesNotThrow(() -> stateMachine.processInput(c));
+        stateMachine.processInput( input.charAt(0));
+        assertTrue(stateMachine.isInAcceptState());
+
+        for (int i = 1; i < input.length(); i++) {
+            final int index = i;
+            assertThrows(IllegalStateException.class, () -> stateMachine.processInput( input.charAt(index)));
         }
-        assertFalse(stateMachine.isInAcceptState());
-    }*/
+
+    }
 }
